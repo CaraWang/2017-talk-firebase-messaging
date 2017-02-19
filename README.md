@@ -1,14 +1,8 @@
-# API Survey - Firebase Realtime Database
+# API Survey - Firebase Messaging
 
-* The Goal of API Survey
-* What is RESTful API ?
-* What is REST ?
-* The Effection to the API Design
-* Firebase Realtime Database API
-    * Introduction to Firebase
-	* HTTP Method
-	* Resource Path
-	* HTTP Status Code
-	* Response Payload
-	* Pros and Cons
-	* Playground: Realtime Marks on an Article
+* What is FCM ?
+* The API for Push Notification
+* The API for Topic Registration
+* The API for Retrieving User's Data
+* Compare the Design of FCM API to RESTful API 
+    * Pros and Cons
