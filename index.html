@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>API Survey #5 - Bitbucket Cloud REST APIs</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="node_modules/shower-ribbon/styles/screen-16x10.css">
+</head>
+<body class="shower list">
+	<header class="caption">
+		<h1>API Survey #5 - Firebase Messaging</h1>
+		<p>Cara Wang &lt;caraw@cnyes.com&gt;</p>
+	</header>
+	<section class="slide" id="cover">
+		<h2>API Survey #5</h2>
+		<h3>Firebase Messaging</h3>
+		<div class="author">
+			<p>@author Cara Wang &lt;caraw@cnyes.com&gt;</p>
+			<p>@since 2017/02/16</p>
+		</div>
+		<img src="pictures/cover.jpeg" class="cover">
+		<style>
+			#cover h2 {
+				margin: 14% 0 0;
+				padding: 10px;
+				color:#f0fcfe;
+				text-align:center;
+				font-size:60px;
+				border-width: 5px;
+				border-color: #f0fcfe;
+				border-top-style: solid;
+				border-bottom-style: solid;
+				}
+			#cover h3 {
+				margin: 18% 0 0;
+				color:#f0fcfe;
+				text-align:center;
+				font-size:30px;
+				}
+			.author {
+				margin:10px 230px 0;
+				color:#f0fcfe;
+				font-style:italic;
+				font-size:20px;
+				}
+				.author p {
+					line-height: 10px;
+					text-align:left;
+					}
+				.author p a {
+					color:#f0fcfe;
+					}
+			#cover img {
+				opacity: 0.9;
+			}
+		</style>
+	</section>
+	<section class="slide">
+		<h2>What is firebase messaging?</h2>
+		<li class="next">
+			整合好的推播機制<span class="next">: Web / iOS / Android</span>
+		</li>
+		<li class="next">
+			流程:
+		</li>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/fcm.jpg">
+		    <figcaption class="black">
+		        推播流程
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<h2>What is firebase messaging?</h2>
+		<li>
+			整合好的推播機制: Web / iOS / Android
+		</li>
+		<li class="next">
+			以前叫做 GCM (Google Cloud Messaging)
+		</li>
+		<blockquote class="next">
+			<p><mark>Firebase Cloud Messaging (FCM) is the new version of GCM.</mark> It inherits the reliable and scalable GCM infrastructure, plus new features! See the FAQ to learn more. If you are integrating messaging in a new app, start with FCM. GCM users are strongly recommended to upgrade to FCM, in order to benefit from new FCM features today and in the future.</p>
+		</blockquote>
+		<style type="text/css">
+			blockquote {
+				margin-top: 20px;
+			}
+		</style>
+	</section>
+	<section class="slide">
+		<h2>API: PUSH Notification</h2>
+		<pre>
+			<code>POST https://fcm.googleapis.com/fcm/send</code>
+			<code>Content-Type:application/json</code>
+			<code>Authorization:key={Your Auth}</code>
+			<code></code>
+			<code>{</code>
+			<code>    "notification": {</code>
+			<code>        "title": "推播標題",</code>
+			<code>        "body": "推播內文",</code>
+ 			<code>        "icon": "推播小圖",</code>
+			<code>        "click_action": "推播動作"</code> 
+			<code>    },</code>
+			<code>    "data": {自訂內容},</code>
+			<code>    "to": "裝置 token"</code>
+			<code>}</code>
+		</pre>
+		<style>
+			pre code {
+				font-size: medium;
+			}
+		</style>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/notification.png">
+		    <figcaption class="black">
+		        Web Notification
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/notification-success-header.png">
+		    <figcaption class="black">
+		        API Response - Header
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/notification-success-body.png">
+		    <figcaption class="black">
+		        API Response - Json Body
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/fcm-downstream.jpg">
+		    <figcaption class="black">
+		        FCM Downstream
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/fcm-upstream.jpg">
+		    <figcaption class="black">
+		        FCM Upstream
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<h2>API: Topic Registration</h2>
+		<li class="next">註冊特定議題</li>
+		<li class="next">例如: 使用者對不同新聞類別感興趣</li>
+		<pre class="next">
+			<code>POST https://iid.googleapis.com/iid/v1/<mark>IID_TOKEN</mark>/rel/topics/<mark>TOPIC_NAME</mark></code>
+			<code>Content-Length: 0</code>
+			<code>Authorization:key={Your Auth}</code>
+		</pre>
+		<li class="next">IID_TOKEN: <a href="https://developers.google.com/instance-id/">instance id</a></li>
+		<li class="next">TOPIC_NAME: 自訂的議題名稱</li>
+		<style type="text/css">
+			pre {
+				margin-top: 20px;
+			}
+		</style>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/upstream-success.png">
+		    <figcaption class="black">
+		        FCM Upstream
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<h2>API: PUSH Notification</h2>
+		<li class="next">推播給特定議題</li>
+		<pre class="next">
+			<code>POST https://fcm.googleapis.com/fcm/send</code>
+			<code>Content-Type:application/json</code>
+			<code>Authorization:key={Your Auth}</code>
+			<code></code>
+			<code>{</code>
+			<code>    "notification": {</code>
+			<code>        "title": "推播標題",</code>
+			<code>        "body": "推播內文",</code>
+ 			<code>        "icon": "推播小圖",</code>
+			<code>        "click_action": "推播動作"</code> 
+			<code>    },</code>
+			<code>    "to": <mark>"/topics/{議題名稱}"</mark></code>
+			<code>}</code>
+		</pre>
+		<style>
+			pre code {
+				font-size: medium;
+			}
+		</style>
+	</section>
+	<section class="slide">
+		<h2>API: Topic Registration</h2>
+		<li class="next">取得單一 IID 的資訊</li>
+		<pre class="next">
+			<code>GET https://iid.googleapis.com/iid/info/IID_TOKEN</code>
+			<code>Content-Type:application/json</code>
+			<code>Authorization:key={Your Auth}</code>
+		</pre>
+		<li class="next">Query String 帶入 <mark>details=true</mark> 才可以拿到這個 iid 註冊的議題有哪些</li>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/get-info-success-header.png">
+		    <figcaption class="black">
+		        Get IID info - Header
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/get-info-success-body.png">
+		    <figcaption class="black">
+		        Get IID info - Body
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<h2>API: Topic Registration</h2>
+		<li class="next">取得單一 IID 的資訊</li>
+		<pre class="next">
+			<code>GET https://iid.googleapis.com/iid/info/IID_TOKEN</code>
+			<code>Content-Type:application/json</code>
+			<code>Authorization:key={Your Auth}</code>
+		</pre>
+		<li class="next">Query String 帶入 <mark>details=true</mark> 才可以拿到這個 iid 註冊的議題有哪些</li>
+	</section>
+	<section class="slide">
+		<h2>RESTful API ?</h2>
+		<code class="next">POST https://fcm.googleapis.com/fcm/send</code>
+		<li class="next">HTTP Method: 用 POST <mark>建立</mark> 資料</li>
+		<li class="next">Resource Name: <mark>send</mark> 是動詞, 不符合 RESTful 希望 Resource Name 要是名詞的期望</li>
+		<li class="next">Response Payload: 成功時的格式一致, <span class="next">但失敗時是 HTML 格式, 不符合 <mark>Interface / Uniform Contract</mark></span></li>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/api-error-401.png">
+		    <figcaption class="black">
+		        HTTP Status Code
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<h2>RESTful API ?</h2>
+		<code>POST https://fcm.googleapis.com/fcm/send</code>
+		<li>HTTP Method: 用 POST <mark>建立</mark> 資料</li>
+		<li>Resource Name: <mark>send</mark> 是動詞, 不符合 RESTful 希望 Resource Name 要是名詞的期望</li>
+		<li>Response Payload: 成功時的格式一致, 但失敗時是 HTML 格式, 不符合 <mark>Interface / Uniform Contract</mark></li>
+		<li class="next">HTTP Status Code: 200 是表示 FCM 收到資料, 並非成功傳給使用者</li>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/http-status-code.png">
+		    <figcaption class="black">
+		        HTTP Status Code
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<h2>RESTful API ?</h2>
+		<code>POST https://iid.googleapis.com/iid/v1/<mark>IID_TOKEN</mark>/rel/topics/<mark>TOPIC_NAME</mark></code><br />
+		<code>GET https://iid.googleapis.com/iid/info/IID_TOKEN</code>
+		<li class="next">HTTP Method: 用 POST <mark>建立</mark> 資料, 用 <mark>GET</mark> 取得資料</li>
+		<li class="next">Resource Name: 資源都是名詞, 且有分層關係, 但是 POST 有版本而 GET 沒有</li>
+		<li class="next">Response Payload: 成功時的格式不一致</li>
+		<style type="text/css">
+			code {
+				font-size: medium;
+			}
+		</style>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/upstream-success.png">
+		    <figcaption class="black">
+		        POST API 沒有 Response Body
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/get-info-success-body.png">
+		    <figcaption class="black">
+		        GET API 則有 Response Body
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<h2>RESTful API ?</h2>
+		<code>POST https://iid.googleapis.com/iid/v1/<mark>IID_TOKEN</mark>/rel/topics/<mark>TOPIC_NAME</mark></code><br />
+		<code>GET https://iid.googleapis.com/iid/info/IID_TOKEN</code>
+		<li>HTTP Method: 用 POST <mark>建立</mark> 資料, 用 <mark>GET</mark> 取得資料</li>
+		<li>Resource Name: 資源都是名詞, 且有分層關係, 但是 POST 有版本而 GET 沒有</li>
+		<li>Response Payload: 成功時的格式不一致<span class="class">, 失敗時有時是 HTML 有時是 Json, 格式也不一致</span></li>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/upstream-fail.png">
+		    <figcaption class="black">
+		        POST API 沒有帶入 content-length 的 Header 錯誤
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/api-error-400.png">
+		    <figcaption class="black">
+		        GET API 給錯誤的 IID
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/api-error-400-1.png">
+		    <figcaption class="black">
+		        GET API 沒有帶入 Auth 在 Header
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<h2>RESTful API ?</h2>
+		<code>POST https://iid.googleapis.com/iid/v1/<mark>IID_TOKEN</mark>/rel/topics/<mark>TOPIC_NAME</mark></code><br />
+		<code>GET https://iid.googleapis.com/iid/info/IID_TOKEN</code>
+		<li>HTTP Method: 用 POST <mark>建立</mark> 資料, 用 <mark>GET</mark> 取得資料</li>
+		<li>Resource Name: 資源都是名詞, 且有分層關係, 但是 POST 有版本而 GET 沒有</li>
+		<li>Response Payload: 成功時的格式不一致, 但失敗時是 HTML 格式是一致的</li>
+		<li class="next">HTTP Status Code: </li>
+	</section>
+	<section class="slide">
+		<figure>
+		    <img class="cover" src="./pictures/http-status-code-1.png">
+		    <figcaption class="black">
+		        HTTP Status Code
+		    </figcaption>
+		</figure>
+	</section>
+	<section class="slide">
+		<h2>Pros and Cons</h2>
+		<ol>
+			<li class="next">
+				Pros
+				<ol>
+					<li>有一致的 HTTP Status Code 定義</li>
+					<li>發生錯誤時的 API Response 若是 Json 格式, 使用字串代號而不是數字代碼: ex: <code>"error":"InvalidToken"</code></li>
+				</ol>
+			</li>
+			<li class="next">
+				Cons
+				<ol>
+					<li>沒有一致的 Response 格式, 造成串接上要依據不同 API 做個別的處理</li>
+				</ol>
+			</li>
+		</ol>
+	</section>
+	<section class="slide">
+		<h2>Pros and Cons</h2>
+		<ol>
+			<li class="next">
+				Cons
+				<ol>
+					<li class="next">沒有一致的 Response 格式, 造成串接上要依據不同 API 做個別的處理</li>
+					<li class="next">甚至有 HTML 回傳格式, 無法做解析</li>
+					<li class="next">使用 IID_TOKEN 在 Path 上, 造成 API Path 非常的長</li>
+				</ol>
+			</li>
+		</ol>
+	</section>
+	<section class="slide">
+		<h2>DEMO Time</h2>
+		<p class="next">DEMO 前先 QA 一下</p>
+	</section>
+	<p class="badge">
+		<a href="">Fork me on GitHub</a>
+	</p>
+	<div class="progress"></div>
+	<script src="node_modules/shower-core/shower.min.js"></script>
+</body>
+</html>
