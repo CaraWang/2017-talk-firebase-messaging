@@ -9,12 +9,12 @@
 </head>
 <body class="shower list">
 	<header class="caption">
-		<h1>API Survey #5 - Firebase Messaging</h1>
+		<h1>API Survey #5 - Firebase Cloud Messaging</h1>
 		<p>Cara Wang &lt;caraw@cnyes.com&gt;</p>
 	</header>
 	<section class="slide" id="cover">
 		<h2>API Survey #5</h2>
-		<h3>Firebase Messaging</h3>
+		<h3>Firebase Cloud Messaging</h3>
 		<div class="author">
 			<p>@author Cara Wang &lt;caraw@cnyes.com&gt;</p>
 			<p>@since 2017/02/16</p>
@@ -57,7 +57,7 @@
 		</style>
 	</section>
 	<section class="slide">
-		<h2>What is firebase messaging?</h2>
+		<h2>What is firebase cloud messaging?</h2>
 		<li class="next">
 			整合好的推播機制<span class="next">: Web / iOS / Android</span>
 		</li>
@@ -74,7 +74,7 @@
 		</figure>
 	</section>
 	<section class="slide">
-		<h2>What is firebase messaging?</h2>
+		<h2>What is firebase cloud messaging?</h2>
 		<li>
 			整合好的推播機制: Web / iOS / Android
 		</li>
@@ -106,14 +106,14 @@
 			<code>Authorization:key={Your Auth}</code>
 			<code></code>
 			<code>{</code>
-			<code>    "notification": {</code>
+			<code>    <mark>"notification"</mark>: {</code>
 			<code>        "title": "推播標題",</code>
 			<code>        "body": "推播內文",</code>
  			<code>        "icon": "推播小圖",</code>
 			<code>        "click_action": "推播動作"</code> 
 			<code>    },</code>
 			<code>    "data": {自訂內容},</code>
-			<code>    "to": "iid token"</code>
+			<code>    <mark>"to"</mark>: "iid token"</code>
 			<code>}</code>
 		</pre>
 		<style>
@@ -126,7 +126,7 @@
 		<figure>
 		    <img class="cover" src="./pictures/notification.png">
 		    <figcaption class="black">
-		        Web Notification
+		        <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/notification#瀏覽器支援度">Web Notification: 瀏覽器支援度</a>
 		    </figcaption>
 		</figure>
 	</section>
@@ -236,16 +236,6 @@
 		        Get IID info - Body
 		    </figcaption>
 		</figure>
-	</section>
-	<section class="slide">
-		<h2>API: Topic Registration</h2>
-		<li class="next">取得單一 IID 的資訊</li>
-		<pre class="next">
-			<code>GET https://iid.googleapis.com/iid/info/IID_TOKEN</code>
-			<code>Content-Type:application/json</code>
-			<code>Authorization:key={Your Auth}</code>
-		</pre>
-		<li class="next">Query String 帶入 <mark>details=true</mark> 才可以拿到這個 iid 註冊的議題有哪些</li>
 	</section>
 	<section class="slide">
 		<h2>RESTful API ?</h2>
